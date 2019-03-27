@@ -31,14 +31,8 @@ Bobot Jumlah Tanggungan Orang Tua = <?= $b_tanggungan_ortu ?> <br/>
 		<th>tanggungan_ortu</th>
 	</tr>
 	<?php
-	$persamaan2 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC");
-	$total = 0;
-	while ($user_data = mysqli_fetch_array($persamaan2)) {
-		$hasil = pow($user_data['nilai'], $b_nilai) * 
-				pow($user_data['kehadiran'], $b_kehadiran) * 
-				pow($user_data['penghasilan_ortu'], -$b_penghasilan_ortu) *
-				pow($user_data['tanggungan_ortu'], -$b_tanggungan_ortu);
-		$total+=$hasil;
+	$persamaan1 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC");
+	while ($user_data = mysqli_fetch_array($persamaan1)) {
 		?>
 			<tr>
 				<td><?= $user_data['nama'] ?></td>
@@ -84,12 +78,17 @@ Bobot Jumlah Tanggungan Orang Tua = <?= $b_tanggungan_ortu ?> <br/>
 <table border=1>
 	<?php
 	$persamaan3 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC");
+	$i=0;
 	while ($user_data = mysqli_fetch_array($persamaan3)) {
 		$hasil = pow($user_data['nilai'], $b_nilai) * 
 				pow($user_data['kehadiran'], $b_kehadiran) * 
 				pow($user_data['penghasilan_ortu'], -$b_penghasilan_ortu) *
 				pow($user_data['tanggungan_ortu'], -$b_tanggungan_ortu);
 		$total2=$hasil/$total;
+
+		$query = "UPDATE tbl_alternatif_wp set hasil = ".$total2." WHERE id = ".$user_data['id'];
+		mysqli_query($mysqli,$query);
+
 		?>
 			<tr>
 				<td><?= $user_data['nama'] ?></td>
@@ -100,6 +99,35 @@ Bobot Jumlah Tanggungan Orang Tua = <?= $b_tanggungan_ortu ?> <br/>
 	}
 	?>
 </table>
+
+
+<h1>Data Hasil Urut</h1>
+<table border=1>
+	<tr>
+		<th>nama</th>
+		<th>nilai</th>
+		<th>kehadiran</th>
+		<th>penghasilan_ortu</th>
+		<th>tanggungan_ortu</th>
+		<th>Nilai</th>
+	</tr>
+	<?php
+	$persamaan1 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY hasil DESC");
+	while ($user_data = mysqli_fetch_array($persamaan1)) {
+		?>
+			<tr>
+				<td><?= $user_data['nama'] ?></td>
+				<td><?= $user_data['nilai'] ?></td>
+				<td><?= $user_data['kehadiran'] ?></td>
+				<td><?= $user_data['penghasilan_ortu'] ?></td>
+				<td><?= $user_data['tanggungan_ortu'] ?></td>
+				<td><?= $user_data['hasil'] ?></td>
+			</tr>
+		<?php
+	}
+	?>
+</table>
+
 
 </body>
 </html>
