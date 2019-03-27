@@ -14,12 +14,12 @@ $result = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC
 	<title>SPK Metode WP</title>
 </head>
 <body>
-<a href="tambah.php">Tambah</a>
+<a href="tambah.php">Tambah</a><br/>
 
-Bobot Nilai = <?= $b_nilai ?> <br./>
-Bobot Kehadiran = <?= $b_kehadiran ?> <br./>
-Bobot Penghasilan Orang Tua = <?= $b_penghasilan_ortu ?> <br./>
-Bobot Jumlah Tanggungan Orang Tua = <?= $b_tanggungan_ortu ?> <br./>
+Bobot Nilai = <?= $b_nilai ?> <br/>
+Bobot Kehadiran = <?= $b_kehadiran ?> <br/>
+Bobot Penghasilan Orang Tua = <?= $b_penghasilan_ortu ?> <br/>
+Bobot Jumlah Tanggungan Orang Tua = <?= $b_tanggungan_ortu ?> <br/>
 
 <h1>Data setiap alternatif</h1>
 <table border=1>
