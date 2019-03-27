@@ -35,7 +35,7 @@ CREATE TABLE `tbl_alternatif_wp` (
   `kehadiran` int(11) NOT NULL,
   `penghasilan_ortu` bigint(20) NOT NULL,
   `tanggungan_ortu` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) 
 
 --
 -- Dumping data for table `tbl_alternatif_wp`
