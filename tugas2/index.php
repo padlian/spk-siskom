@@ -29,6 +29,7 @@ Bobot Jumlah Tanggungan Orang Tua = <?= $b_tanggungan_ortu ?> <br/>
 		<th>kehadiran</th>
 		<th>penghasilan_ortu</th>
 		<th>tanggungan_ortu</th>
+		<th>Aksi</th>
 	</tr>
 	<?php
 	$persamaan1 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC");
@@ -40,6 +41,9 @@ Bobot Jumlah Tanggungan Orang Tua = <?= $b_tanggungan_ortu ?> <br/>
 				<td><?= $user_data['kehadiran'] ?></td>
 				<td><?= $user_data['penghasilan_ortu'] ?></td>
 				<td><?= $user_data['tanggungan_ortu'] ?></td>
+				<td>
+					<a href="ubah.php?id=<?= $user_data['id'] ?>">Ubah</a>
+				</td>
 			</tr>
 		<?php
 	}
