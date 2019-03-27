@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2019 at 01:47 PM
+-- Generation Time: Mar 27, 2019 at 02:40 PM
 -- Server version: 10.3.10-MariaDB
 -- PHP Version: 7.1.25
 
@@ -34,17 +34,19 @@ CREATE TABLE `tbl_alternatif_wp` (
   `nilai` int(11) NOT NULL,
   `kehadiran` int(11) NOT NULL,
   `penghasilan_ortu` bigint(20) NOT NULL,
-  `tanggungan_ortu` int(11) NOT NULL
-) 
+  `tanggungan_ortu` int(11) NOT NULL,
+  `hasil` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_alternatif_wp`
 --
 
-INSERT INTO `tbl_alternatif_wp` (`id`, `nama`, `nilai`, `kehadiran`, `penghasilan_ortu`, `tanggungan_ortu`) VALUES
-(1, 'S1', 80, 100, 1000000, 3),
-(2, 'S2', 90, 100, 500000, 2),
-(3, 'S3', 85, 100, 500000, 2);
+INSERT INTO `tbl_alternatif_wp` (`id`, `nama`, `nilai`, `kehadiran`, `penghasilan_ortu`, `tanggungan_ortu`, `hasil`) VALUES
+(1, 'S1', 80, 100, 1000000, 3, 0.278302),
+(2, 'S2', 90, 100, 500000, 2, 0.339077),
+(3, 'S3', 85, 100, 500000, 2, 0.331412),
+(4, 'S4', 30, 1, 1000000, 2, 0.051209);
 
 --
 -- Indexes for dumped tables
@@ -64,7 +66,7 @@ ALTER TABLE `tbl_alternatif_wp`
 -- AUTO_INCREMENT for table `tbl_alternatif_wp`
 --
 ALTER TABLE `tbl_alternatif_wp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
