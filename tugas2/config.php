@@ -1,5 +1,5 @@
 <?php
-$databaseHost = 'localhost';
+$databaseHost = '127.0.0.1';
 $databaseName = 'spk2';
 $databaseUsername = 'root';
 $databasePassword = '';

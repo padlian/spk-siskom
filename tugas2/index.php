@@ -1,137 +1,184 @@
 <?php
-include_once("config.php");
-$b_nilai = 0.4;
-$b_kehadiran = 0.3;
-$b_penghasilan_ortu = 0.1;
-$b_tanggungan_ortu = 0.2;
-
-$result = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC");
-
+error_reporting(0);
 ?>
-
+<!DOCTYPE html>
 <html>
 <head>
-	<title>SPK Metode WP</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Blank Page</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body>
-<a href="tambah.php">Tambah</a><br/>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
 
-Bobot Nilai = <?= $b_nilai ?> <br/>
-Bobot Kehadiran = <?= $b_kehadiran ?> <br/>
-Bobot Penghasilan Orang Tua = <?= $b_penghasilan_ortu ?> <br/>
-Bobot Jumlah Tanggungan Orang Tua = <?= $b_tanggungan_ortu ?> <br/>
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="../../index2.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>S</b>AW</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>SAW</b></span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
 
-<h1>Data setiap alternatif</h1>
-<table border=1>
-	<tr>
-		<th>nama</th>
-		<th>nilai</th>
-		<th>kehadiran</th>
-		<th>penghasilan_ortu</th>
-		<th>tanggungan_ortu</th>
-		<th>Aksi</th>
-	</tr>
-	<?php
-	$persamaan1 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC");
-	while ($user_data = mysqli_fetch_array($persamaan1)) {
-		?>
-			<tr>
-				<td><?= $user_data['nama'] ?></td>
-				<td><?= $user_data['nilai'] ?></td>
-				<td><?= $user_data['kehadiran'] ?></td>
-				<td><?= $user_data['penghasilan_ortu'] ?></td>
-				<td><?= $user_data['tanggungan_ortu'] ?></td>
-				<td>
-					<a href="ubah.php?id=<?= $user_data['id'] ?>">Ubah</a>
-				</td>
-			</tr>
-		<?php
-	}
-	?>
-</table>
-	
-<h1>Persamaan 2</h1>
-<table border=1>
-	<?php
-	$persamaan2 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC");
-	$total = 0;
-	while ($user_data = mysqli_fetch_array($persamaan2)) {
-		$hasil = pow($user_data['nilai'], $b_nilai) * 
-				pow($user_data['kehadiran'], $b_kehadiran) * 
-				pow($user_data['penghasilan_ortu'], -$b_penghasilan_ortu) *
-				pow($user_data['tanggungan_ortu'], -$b_tanggungan_ortu);
-		$total+=$hasil;
-		?>
-			<tr>
-				<td><?= $user_data['nama'] ?></td>
-				<td><?= $user_data['nilai'] ?></td>
-				<td>
-					(<?= $user_data['nilai']?>^<?= $b_nilai ?>)*
-					(<?= $user_data['kehadiran'] ?>^<?= $b_kehadiran ?>)*
-					(<?= $user_data['penghasilan_ortu'] ?>^-<?= $b_penghasilan_ortu ?>))*
-					(<?= $user_data['tanggungan_ortu'] ?>^-<?= $b_tanggungan_ortu ?>) = 
-					<?= $hasil ?></td>
-			</tr>
-		<?php
-	}
-	?>
-</table>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav"></ul>
+      </div>
+    </nav>
+  </header>
 
+  <!-- =============================================== -->
 
-<h1>Persamaan 3</h1>
-<table border=1>
-	<?php
-	$persamaan3 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY id ASC");
-	$i=0;
-	while ($user_data = mysqli_fetch_array($persamaan3)) {
-		$hasil = pow($user_data['nilai'], $b_nilai) * 
-				pow($user_data['kehadiran'], $b_kehadiran) * 
-				pow($user_data['penghasilan_ortu'], -$b_penghasilan_ortu) *
-				pow($user_data['tanggungan_ortu'], -$b_tanggungan_ortu);
-		$total2=$hasil/$total;
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Alexander Pierce</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li><a href="index.php"><i class="fa fa-book"></i> <span>Hasil</span></a></li>
+        <li><a href="index.php?p=tambah"><i class="fa fa-book"></i> <span>Tambah</span></a></li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
 
-		$query = "UPDATE tbl_alternatif_wp set hasil = ".$total2." WHERE id = ".$user_data['id'];
-		mysqli_query($mysqli,$query);
+  <!-- =============================================== -->
 
-		?>
-			<tr>
-				<td><?= $user_data['nama'] ?></td>
-				<td><?= $user_data['nilai'] ?></td>
-				<td><?= $hasil ?> / <?= $total ?>  = <?= $total2 ?></td>
-			</tr>
-		<?php
-	}
-	?>
-</table>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blank page
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+      </ol>
+    </section>
 
+    <!-- Main content -->
+    <section class="content">
 
-<h1>Data Hasil Urut</h1>
-<table border=1>
-	<tr>
-		<th>nama</th>
-		<th>nilai</th>
-		<th>kehadiran</th>
-		<th>penghasilan_ortu</th>
-		<th>tanggungan_ortu</th>
-		<th>Nilai</th>
-	</tr>
-	<?php
-	$persamaan1 = mysqli_query($mysqli, "SELECT * FROM tbl_alternatif_wp ORDER BY hasil DESC");
-	while ($user_data = mysqli_fetch_array($persamaan1)) {
-		?>
-			<tr>
-				<td><?= $user_data['nama'] ?></td>
-				<td><?= $user_data['nilai'] ?></td>
-				<td><?= $user_data['kehadiran'] ?></td>
-				<td><?= $user_data['penghasilan_ortu'] ?></td>
-				<td><?= $user_data['tanggungan_ortu'] ?></td>
-				<td><?= $user_data['hasil'] ?></td>
-			</tr>
-		<?php
-	}
-	?>
-</table>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Title</h3>
 
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+          <?php
+            $p = "";
+            $p = $_GET["p"];
+            if($p){
+              include($p.".php");
+            }
+            else{
+              include("isi.php");
+            }
+          ?>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
 
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="js/demo.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.sidebar-menu').tree()
+  })
+</script>
 </body>
 </html>
